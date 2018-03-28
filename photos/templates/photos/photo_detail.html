@@ -1,0 +1,26 @@
+{% extends "home/base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+
+<div class="col-sm-4 specific_photo">
+  <h2 class="card-title">{{photos.name}}</h2>
+  <p class="card-text">{{photos.description}}</p>
+  <h4>€{{photos.price}}</h4>
+  <span class="text-warning">
+   
+    
+  </span>
+  
+</div>
+<div class="col-sm-8 specific_photo">
+    <img width="900" height="400" class="card-img-top img-fluid" src="{{MEDIA_URL}}{{photos.image}}" alt="">
+</div>
+
+ {% include "ratings/_show_review.html" %}
+          
+          {% if user.is_authenticated %}
+            {% include "ratings/_add_review_form.html" %}
+          {% endif %}
+
+
+{% endblock content %}
