@@ -1,1 +1,1 @@
-web: gunicorn irish-photos-django.wsgi:application
+web: gunicorn irish-photos.wsgi:application
