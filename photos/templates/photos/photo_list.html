@@ -7,7 +7,7 @@
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{photo.image}}')">
                             <div>
-                                
+                                <a><img src="{{MEDIA_URL}}{{product.image}}" alt="">
                             <!--    <h4 class="pull-right">€{{photo.price}}</h4>-->
                                 <h4><a href="{% url 'photo_detail' photo.id %}">{{photo.name}}</a>
                             <!--    </h4>-->

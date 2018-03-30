@@ -1,0 +1,1 @@
+web: gunicorn irish-photos-django.wsgi:application
