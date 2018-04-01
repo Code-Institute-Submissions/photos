@@ -39,13 +39,14 @@
 .header-mobile > .navbar-brand:hover, .header-mobile > .navbar-brand:focus {
     color: green;
 }
-
-
-body {
-    padding-top: 120px;
-    padding-bottom: 60px
+.navbar-default .badge {
+    color: green;
 }
 
+body {
+    padding-top: 103px;
+    padding-bottom: 60px
+}
 
 
 /*--------------------Photo List--------------------*/
@@ -62,6 +63,10 @@ body {
     width: 100%;
 }
 
+
+.container-fluid {
+    margin-top: 20px;
+}
 /*--------------------Specific Photo--------------------*/
 
 .specific_photo {

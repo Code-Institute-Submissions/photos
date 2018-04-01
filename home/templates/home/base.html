@@ -64,7 +64,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><i class="fa fa-info"></i> About</a></li>
                             <li><a href="{% url 'photo_list' %}"><i class="fa fa-camera"></i> Photos</a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i> Cart
+                            <li><a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
                                 <label class="badge badge-light">{{ items_in_cart }}</label></a>
                             <li><a href="#"><i class="fa fa-question"></i> FAQ's</a></li>
                             
@@ -101,19 +101,20 @@
                 {% block content %} {% endblock %}
             </div>
         </div>
+        {% block carousel %} {% endblock %}
         <!--</div>-->
         <!--<div>-->
 
         <!--</div>-->
         <!--<hr>-->
-        <!--<footer class="footer">-->
-        <!--    <div class="container navbar-fixed-bottom our-footer">-->
-        <!--        {% block footer %} -->
-        <!--        <p>Made by Code Institute bootcampers</p>-->
-        <!--        <p>Want this fixed</p>-->
-        <!--        {% endblock %}-->
-        <!--    </div>-->
-        <!--</footer>`-->
+        <footer class="footer">
+            <div class="container navbar-fixed-bottom our-footer">
+                {% block footer %} 
+                <p>Made by Code Institute bootcampers</p>
+                <p>Want this fixed</p>
+                {% endblock %}
+            </div>
+        </footer>`
         
     </body>
 </html>
