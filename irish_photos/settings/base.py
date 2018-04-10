@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'photos',
     'ratings',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -116,6 +117,10 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET_KEY')
+
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 # Static files (CSS, JavaScript, Images)

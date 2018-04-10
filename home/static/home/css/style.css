@@ -45,10 +45,8 @@
 
 body {
     padding-top: 103px;
-    padding-bottom: 60px
+   
 }
-
-
 /*--------------------Photo List--------------------*/
 .photo_gallery {
     border: 3px solid green;
@@ -67,11 +65,49 @@ body {
 .container-fluid {
     margin-top: 20px;
 }
+
+.photo_list_content {
+    display: none;
+}
+.rectangle {
+    background-color: rgba(0, 128, 0, 0.6);
+    border-radius: 20px;
+    margin-top: 25%;
+    border: 3px solid black;
+}
+.photo_list_content > .rectangle {
+    color: green;
+}
 /*--------------------Specific Photo--------------------*/
 
 .specific_photo {
     padding: 10px;
+    padding-top: 20px;
+    
 }
 .specific_photo > img {
     width: 100%;
+}
+.full_picture {
+    border: 3px solid green;
+    border-radius: 20px;
+}
+/*--------------------Footer--------------------*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  
+  margin-bottom: 60px;
+}
+.footer {
+  border-top: 3px solid green;
+  padding-top: 5px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: black;
 }

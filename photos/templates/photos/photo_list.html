@@ -1,17 +1,18 @@
 {% extends "home/base.html" %}
 {% load bootstrap_tags %}
 {% block content %}
-    <div class="container-fluid">
-        <div class="row">
+    
         {% for photo in photos %}
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+                    <div class="col-sm-4 container-fluid">
                         <div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{photo.image}}')">
-                            <div>
-                                <a><img src="{{MEDIA_URL}}{{product.image}}" alt="">
-                            <!--    <h4 class="pull-right">€{{photo.price}}</h4>-->
-                                <h4><a href="{% url 'photo_detail' photo.id %}">{{photo.name}}</a>
-                            <!--    </h4>-->
-                            <!--    <p>{{photo.description}}</p>-->
+                            <div class="photo_list_content">
+                                <div class="col-xs-4"></div>
+                                <a href="{% url 'photo_detail' photo.id %}"><div class="rectangle col-xs-4">
+                                    <h4>{{photo.name}}</h4>
+                                    <br>
+                                    <h4>€{{photo.price}}</h4>
+                                </div></a>
+                                <div class="col-xs-4"></div>
                             </div>
                             <!--<div class="ratings">-->
                             <!--    <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>-->
@@ -30,7 +31,6 @@
         </div><div class="row">
     {% endif %}
     {% endfor %}
-    </div>
-    </div>
+   
 {% endblock %}
 

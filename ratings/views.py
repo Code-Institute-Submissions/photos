@@ -9,6 +9,7 @@ def add_a_rating(request):
         return HttpResponseForbidden()
     
     photo_id = int(request.POST['photo'])
+    print(photo_id)
     photo = get_object_or_404(Photo, pk=photo_id)
     
     form = ReviewForm(request.POST)
@@ -17,4 +18,6 @@ def add_a_rating(request):
         review.reviewer = request.user
         review.photo = photo
         review.save()
-        return redirect(reverse('photo_item', args=(photo_id,)))
+        return redirect(reverse('photo_detail', args=(photo_id,)))
+        
+        

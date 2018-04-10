@@ -2,35 +2,43 @@
 {% load bootstrap_tags %}
 {% block content %}
 
-<div class="col-sm-4 specific_photo">
+<div class="col-sm-4 specific_photo text-center">
+  
   <h2 class="card-title">{{photos.name}}</h2>
   <p class="card-text">{{photos.description}}</p>
   <h4>€{{photos.price}}</h4>
-  <span class="text-warning">
-   
-    
-  </span>
-      <div>
-        <form action="{% url 'add_to_cart' %}" method="post">
-          {% csrf_token %}
-          <input type="hidden" name="id" value="{{photos.id}}"/>
-          <input type="hidden" name="quantity" value="1"/>
-          <input class="btn btn-success" type="submit" value="Add To Cart"/>
-        </form>
-      </div>
-      <div>
-      <a href="{% url 'photo_list' %}" class="btn btn-warning btn-sm btn-block" role="button"><i class="glyphicon glyphicon-resize-small"></i>Return</a>
-      </div>
-</div>
-<div class="col-sm-8 specific_photo">
-    <img width="900" height="400" class="card-img-top img-fluid" src="{{MEDIA_URL}}{{photos.image}}" alt="">
+  
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4">
+      <form action="{% url 'add_to_cart' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{photos.id}}"/>
+        <input type="hidden" name="quantity" value="1"/>
+        <input class="btn btn-success" type="submit" value="Add To Cart"/>
+      </form>
+    </div>
+  </div>
+  
+  <br>
+  
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4">
+    <a href="{% url 'photo_list' %}" class="btn btn-danger" role="button"><i class="glyphicon glyphicon-arrow-left"></i>  Return</a>
+    </div>
+  </div>
+  
+  {% if user.is_authenticated %}
+    {% include "ratings/_add_review_form.html" %}
+  {% endif %}
+  
+  {% include "ratings/_show_review.html" %}
+  
 </div>
 
- {% include "ratings/_show_review.html" %}
-          
-          {% if user.is_authenticated %}
-            {% include "ratings/_add_review_form.html" %}
-          {% endif %}
+<div class="col-sm-8 specific_photo">
+    <img width="900" height="400" class="card-img-top img-fluid full_picture" src="{{MEDIA_URL}}{{photos.image}}" alt="">
+</div>
+
 
 
 {% endblock content %}
