@@ -2,35 +2,44 @@
 {% load bootstrap_tags %}
 {% block content %}
     
-        {% for photo in photos %}
-                    <div class="col-sm-4 container-fluid">
-                        <div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{photo.image}}')">
-                            <div class="photo_list_content">
-                                <div class="col-xs-4"></div>
-                                <a href="{% url 'photo_detail' photo.id %}"><div class="rectangle col-xs-4">
-                                    <h4>{{photo.name}}</h4>
-                                    <br>
-                                    <h4>€{{photo.price}}</h4>
-                                </div></a>
-                                <div class="col-xs-4"></div>
-                            </div>
-                            <!--<div class="ratings">-->
-                            <!--    <p class="pull-right">{{product.reviews_received.all|length}} reviews</p>-->
-                            <!--    <p>-->
-                            <!--        {% for star in product.stars %}-->
-                            <!--        <i class="fa fa-star"></i>-->
-                            <!--        {% endfor %}-->
-                            <!--        {% if product.needs_half_star %}-->
-                            <!--        <i class="fa fa-star-half"></i>-->
-                            <!--        {% endif %} -->
-                            <!--    </p>-->
-                            <!--</div>-->
-                        </div>
-                    </div>
+{% for photo in photos %}
+    <div class="col-sm-4 container-fluid">
+        <div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{photo.image}}')">
+            <div class="photo_list_content">
+                <div class="col-xs-4">
+                </div>
+                <a href="{% url 'photo_detail' photo.id %}"><div class="rectangle col-xs-4">
+                    <h4>{{photo.name}}</h4>
+                    <br>
+                    <h4>€{{photo.price}}</h4>
+                </div></a>
+                <div class="col-xs-4">
+                </div>
+            </div>
+        </div>    
+          
+        
+        <div class="ratings text-center">
+            {% if photo.reviews_received.all|length > 0 %}
+                <!--<p class="pull-right">{{photo.reviews_received.all|length}} reviews</p>-->
+                <p>
+                    {% for star in photo.stars %}
+                        <i class="fa fa-star" style="color:gold"></i>
+                    {% endfor %}
+                    {% if photo.needs_half_star %}
+                        <i class="fa fa-star-half" style="color:gold"></i>
+                    {% endif %} 
+                </p>
+            {% else %}
+                <p>Not rated yet.</p>
+            {% endif %}
+        </div>
+       
+    </div>
     {% if forloop.counter|divisibleby:3 %}
         </div><div class="row">
     {% endif %}
-    {% endfor %}
+{% endfor %}
    
 {% endblock %}
 

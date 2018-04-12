@@ -66,7 +66,8 @@
                     
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"><i class="fa fa-info"></i> About</a></li>
+                            <li><a href="#" type="button" class="btn" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-info"></i> About</a></li>
+                            <li><a href="{% url 'post_list' %}"><i class="fa fa-pencil"></i> Blog</a></li>
                             <li><a href="{% url 'photo_list' %}"><i class="fa fa-camera"></i> Photos</a></li>
                             <li><a href="{% url 'view_cart' %}"><i class="fa fa-shopping-cart"></i> Cart
                                 <label class="badge badge-light">{{ items_in_cart }}</label></a>
@@ -93,27 +94,17 @@
         
         
         
-        <!--<div class="container">-->
-        <!--  <div class="row">-->
-        <!--    <form>-->
-        <!--        <input class="form-control" type="text" placeholder="Search" name="query" />-->
-        <!--        <input type="radio" name="match" value="contains" checked> Contains<br>-->
-        <!--        <input type="radio" name="match" value="begins"> Begins With<br>-->
-        <!--        <input class="btn btn-default" type="submit" value="search" />-->
-        <!--    </form>-->
-        <!--  </div>-->
-        <!--  <br>-->
+        {% block carousel %} {% endblock %}
         <div class="container">
             <div class="row">
                 {% block content %} {% endblock %}
             </div>
         </div>
-        {% block carousel %} {% endblock %}
-        <!--</div>-->
-        <!--<div>-->
-
-        <!--</div>-->
-        <!--<hr>-->
+        
+     
+     
+     
+     
         <footer class="footer navbar-fixed-bottom our-footer">
             <div class="container ">
                 {% block footer %} 

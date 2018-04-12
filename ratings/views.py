@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponseForbidden
 from .forms import ReviewForm
 from photos.models import Photo
+from django.contrib import messages
 
 # Create your views here.
 def add_a_rating(request):
@@ -9,7 +10,6 @@ def add_a_rating(request):
         return HttpResponseForbidden()
     
     photo_id = int(request.POST['photo'])
-    print(photo_id)
     photo = get_object_or_404(Photo, pk=photo_id)
     
     form = ReviewForm(request.POST)
@@ -19,5 +19,7 @@ def add_a_rating(request):
         review.photo = photo
         review.save()
         return redirect(reverse('photo_detail', args=(photo_id,)))
-        
+    else:
+        messages.error(request, "Number should be between 1 and 5")
+        return redirect(reverse('photo_detail', args=(photo_id,)))
         

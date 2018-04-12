@@ -38,7 +38,21 @@
 <div class="col-sm-8 specific_photo">
     <img width="900" height="400" class="card-img-top img-fluid full_picture" src="{{MEDIA_URL}}{{photos.image}}" alt="">
 </div>
-
+<div class="ratings text-center">
+            {% if photos.reviews_received.all|length > 0 %}
+                <p>
+                    {% for star in photos.stars %}
+                        <i class="fa fa-star" style="color:gold"></i>
+                    {% endfor %}
+                    {% if photos.needs_half_star %}
+                        <i class="fa fa-star-half" style="color:gold"></i>
+                    {% endif %} 
+                </p>
+                <p>{{photos.reviews_received.all|length}} reviews</p>
+            {% else %}
+                <p>Not rated yet.</p>
+            {% endif %}
+        </div>
 
 
 {% endblock content %}

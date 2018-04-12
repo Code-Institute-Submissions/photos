@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     
     $(".photo_gallery").mouseenter(function() {
-    $(this).children(".photo_list_content").fadeIn(1000);
+    $(this).children(".photo_list_content").fadeIn(1);
     });
     
     $(".photo_gallery").mouseleave(function() {
@@ -10,11 +10,15 @@ $(document).ready(function(){
     });
     
     
+    $(".photo_gallery").mouseenter(function() {
+        $(this).children(".ratings").fadeIn(1);
+    });
     
-    $('.specific_photo').scroll(function() { 
-        $('.full_picture').animate({top:$(this).scrollTop()});
+    $(".photo_gallery").mouseleave(function() {
+	    $("ratings").fadeOut(1);
     });
     
    
+
 });
 

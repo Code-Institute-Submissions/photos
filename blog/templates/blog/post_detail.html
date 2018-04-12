@@ -1,0 +1,46 @@
+{% extends 'home/base.html' %}
+{% load bootstrap_tags %}
+{% block content %}
+
+
+    <div class="col-sm-4 specific_photo text-center">
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.content|linebreaksbr}}</p>
+        <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>
+           
+        <br>
+        
+        
+        
+         <div class="row">
+             <div class="col-sm-offset-4 col-sm-4">
+                {% if post.author == request.user or request.user.is_superuser == True %}
+                    <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm btn-block" role="button"><i class="glyphicon glyphicon-edit"></i>Edit</a>
+                {% endif %}
+                    <a href="{% url 'post_list' %}" class="btn btn-success btn-sm btn-block" role="button"><i class="glyphicon glyphicon-resize-small"></i>Return</a>
+                    <a href="{% url 'delete_post' post.id %}" class="btn btn-danger btn-sm btn-block" role="button"><i class="glyphicon glyphicon-remove"></i>Delete</a>
+             </div>
+        </div>
+      
+       
+    </div>
+    
+
+    <div class="col-sm-8 specific_photo">
+            {% if post.image %}
+                <img width="900" height="400" class="card-img-top img-fluid full_picture" src="{{MEDIA_URL}}{{post.image}}" alt="">
+            {% endif %}
+    </div>
+
+
+
+
+
+
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+
+

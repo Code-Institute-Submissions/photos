@@ -9,5 +9,6 @@ def photo_list(request):
     
 def photo_detail(request, id):
     photos = get_object_or_404(Photo, pk=id)
+    print(photos.average_rating)
     form = ReviewForm()
     return render(request, "photos/photo_detail.html", {'photos': photos, 'review_form': form})
