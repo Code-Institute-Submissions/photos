@@ -1,7 +1,8 @@
 {% extends "home/base.html" %}
 {% block content %}
-    <div class="col-sm-4 specific_photo text-center post_search">
+    <div class="col-md-4 specific_photo text-center post_search">
     
+        <h2>Blog</h2>
         <form action={% url 'search_posts' %}>
             <input class="form-control" type="text" placeholder="Search" name="query" />
             <input type="radio" name="match" value="contains" checked> Contains<br>
@@ -11,19 +12,17 @@
         <br>
         <div>
             {% if user.is_authenticated %}
-                <p><button class="btn btn-default" onclick="location.href='{% url 'create_post' %}'">New Post</button></p>
+                <p><button class="btn btn-primary btn-sm" onclick="location.href='{% url 'create_post' %}'"><i class="glyphicon glyphicon-plus"></i> New Post</button></p>
             {% endif %}
         </div>
     </div>
     
     
-    <div class="col-sm-offset-4 col-sm-8 specific_photo text-center">
+    <div class="col-md-8 specific_photo text-center">
         {% for post in posts %}
             <div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{post.image}}')">      
-                <h3>{{ post.title }}</h3>
-                <p>{{ post.content|truncatewords:30 }}</p>
-                <p><button class="btn btn-success" onclick="location.href='{% url 'post_detail' post.id %}'">Read More</button></p>
-                <p>{{ post.published_date }} | <strong>Views</strong> {{ post.views }} | <strong>Tag</strong> {{ post.tag }}</p>
+                <h4>{{ post.title }}</h4>
+                <p><button class="btn btn-success btn-sm" onclick="location.href='{% url 'post_detail' post.id %}'">Read More</button></p>
             </div>
         {% endfor %}
     </div>

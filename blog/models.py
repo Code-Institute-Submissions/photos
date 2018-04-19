@@ -15,6 +15,8 @@ class Post(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateTimeField(blank=True, null=True)
     views = models.IntegerField(default=0)
+    likes = models.IntegerField(default=0)
+    liked = models.BooleanField(default=False)
     tag = models.CharField(max_length=30, blank=True, null=True)
     image = models.ImageField(upload_to="images", blank=True, null=True)
     

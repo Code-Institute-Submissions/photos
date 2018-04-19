@@ -12,3 +12,12 @@ def photo_detail(request, id):
     print(photos.average_rating)
     form = ReviewForm()
     return render(request, "photos/photo_detail.html", {'photos': photos, 'review_form': form})
+    
+    
+def error_404(request):
+        data = {}
+        return render(request,'photos/404.html', data)
+ 
+def error_500(request):
+        data = {}
+        return render(request,'myapp/error_500.html', data)

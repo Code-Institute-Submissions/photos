@@ -12,10 +12,14 @@ from django.contrib import messages
 from cart.utils import get_cart_items_and_total
 from django.core.mail import send_mail
 from django.template.loader import get_template, render_to_string
+from django.http import HttpResponseForbidden
 
 stripe.api_key = settings.STRIPE_SECRET
 # Create your views here.
 def checkout(request):
+    if request.user.is_authenticated == False:
+        return HttpResponseForbidden()
+        
     if request.method=="POST":
         order_form = OrderForm(request.POST)    
         payment_form = MakePaymentForm(request.POST)

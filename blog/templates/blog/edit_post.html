@@ -2,13 +2,13 @@
 {% load bootstrap_tags %}
 {% block content %}
     
-    <h1>Edit Post...</h1>
     
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        
-        {{ form | as_bootstrap }}
-        
-        <input type="submit" value="Submit"/>
-    </form>
+<form class="container-fluid" method="POST" enctype="multipart/form-data">
+    <legend>Edit Post...</legend>
+    {% csrf_token %}
+    {{ form | as_bootstrap }}
+    <input class="btn btn-primary btn-sm" type="submit" value="Submit"/>
+</form>
+
+
 {% endblock content %} 

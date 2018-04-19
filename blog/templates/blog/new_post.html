@@ -1,13 +1,14 @@
 {% extends 'home/base.html' %}
 {% load bootstrap_tags %}
-
 {% block content %}
-<h1>New Post</h1>
 
-<form method="POST" enctype="multipart/form-data">
+
+<form class="container-fluid" method="POST" enctype="multipart/form-data">
+    <legend>New Post</legend>
     {% csrf_token %}
     {{ form  | as_bootstrap }}
-    <input type="Submit" value="Save"/>
+    <input class="btn btn-primary btn-sm" type="Submit" value="Save"/>
 </form>
+
 
 {% endblock content %}

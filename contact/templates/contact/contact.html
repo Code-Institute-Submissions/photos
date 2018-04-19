@@ -1,0 +1,15 @@
+{% extends "home/base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+
+
+
+<form class="container-fluid" role="form" action="{% url 'contact' %}" method="post">
+    <legend>Contact Us</legend>
+    {% csrf_token %}
+    {{ form | as_bootstrap }}
+    <button class="btn btn-primary btn-sm" type="submit">Submit</button>
+</form>
+
+
+{% endblock %}

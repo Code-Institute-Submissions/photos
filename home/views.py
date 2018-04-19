@@ -14,10 +14,10 @@ def home(request):
             top = p
             
     posts = Post.objects.all()
-    most_viewed = get_object_or_404(Post, pk=1)
+    most_liked = get_object_or_404(Post, pk=1)
     for p in posts:
-        if p.id is None or p.views is None or p.views == 0:
+        if p.id is None or p.likes is None or p.views == 0:
             pass
-        elif p.views > most_viewed.views:
-            most_viewed = p
-    return render(request, 'home/index.html', {"photos":photos, "top": top, "most_viewed": most_viewed})
+        elif p.likes > most_liked.likes:
+            most_liked = p
+    return render(request, 'home/index.html', {"photos":photos, "top": top, "most_liked": most_liked})

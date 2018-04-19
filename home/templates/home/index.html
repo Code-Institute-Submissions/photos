@@ -41,8 +41,8 @@
 {% block content %}
 
   <div class="col-sm-6 specific_photo text-center">
-    <h2>Most recent blog post</h2>
-      <a href="{% url 'post_detail'  most_viewed.id %}"><div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{most_viewed.image}}')"></div></a>
+    <h2>Most liked blog post</h2>
+      <a href="{% url 'post_detail'  most_liked.id %}"><div class="photo_gallery" style="background-image: url('{{MEDIA_URL}}{{most_liked.image}}')"></div></a>
   </div>
   
   

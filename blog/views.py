@@ -9,8 +9,6 @@ from django.http import HttpResponseForbidden
     
 def post_list(request):
     posts = Post.objects.all().order_by('-id')
-    # posts = Post.objects.filter(published_date__lte=timezone.now()
-    #                           ).order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
     
 def post_detail(request, id):
@@ -21,6 +19,9 @@ def post_detail(request, id):
 
     
 def create_post(request):
+    if request.user.is_authenticated == False:
+        print("Nice try")
+        return HttpResponseForbidden()
     if request.method=="POST":
         form = PostForm(request.POST, request.FILES)
         message = form.save(commit=False)
@@ -36,7 +37,8 @@ def create_post(request):
 def edit_post(request, id):
     item = get_object_or_404(Post, pk=id)
     
-    if item.author != request.user or request.user.is_staff:
+    if item.author != request.user:
+        print("Nice try")
         return HttpResponseForbidden()
     if request.method == "POST":
         print("It's a post")
@@ -49,10 +51,20 @@ def edit_post(request, id):
     
     form = EditPostForm(instance=item)
     return render(request, 'blog/edit_post.html', {'form': form})
-    
+
+
+def like_post(request, id):
+    if request.user.is_authenticated == False:
+        return HttpResponseForbidden()
+    post = get_object_or_404(Post, pk=id)
+    post.likes += 1
+    post.save()
+    return redirect("post_list")     
     
 def delete_post(request, id):
     item = get_object_or_404(Post, pk=id)
+    if item.author != request.user:
+        return HttpResponseForbidden()
     item.delete()
     return redirect("post_list")
     
