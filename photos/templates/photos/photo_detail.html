@@ -11,8 +11,8 @@
   <div class="row">
     <div class="col-sm-offset-4 col-sm-4">
       {% if user.is_authenticated %}
-        <p><a href="#" class="btn btn-primary  btn-sm" role="button" data-toggle="modal" data-target="#toBuy"><i class="glyphicon glyphicon-plus"></i>  Add To Cart</a></p>
-       
+        <p><a href="#" class="btn btn-primary  btn-sm" role="button" data-toggle="modal" data-target="#toBuy{{ photos.id }}"><i class="glyphicon glyphicon-plus"></i>  Add To Cart</a></p>
+         
       {% else %}
         <p>To purchase a photo log in <a href="{% url 'login' %}"><strong>here</strong></a> or first time users can register 
         <a href="{% url 'register' %}"><strong>here</strong></a></p>
@@ -55,7 +55,7 @@
         </div>
 
    
-  <div id="toBuy" class="modal fade" role="dialog">
+  <div id="toBuy{{ photos.id }}" class="modal fade" role="dialog">
       <div class="modal-dialog">
           <div class="modal-content">
               <div class="modal-header text-center">

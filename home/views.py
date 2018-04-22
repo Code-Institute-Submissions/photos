@@ -3,7 +3,6 @@ from photos.models import Photo
 from blog.models import Post
 
 
-# Create your views here.
 def home(request):
     photos = Photo.objects.all()
     top = get_object_or_404(Photo, pk=1)
@@ -12,12 +11,12 @@ def home(request):
             pass
         elif p.average_rating > top.average_rating:
             top = p
-            
     posts = Post.objects.all()
-    most_liked = get_object_or_404(Post, pk=1)
+    most_liked = get_object_or_404(Post, pk=8)
     for p in posts:
         if p.id is None or p.likes is None or p.views == 0:
             pass
-        elif p.likes > most_liked.likes:
+        elif most_liked.likes is None or p.likes > most_liked.likes:
             most_liked = p
+    print(most_liked) 
     return render(request, 'home/index.html', {"photos":photos, "top": top, "most_liked": most_liked})

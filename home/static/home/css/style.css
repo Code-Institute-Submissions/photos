@@ -223,3 +223,9 @@ form > legend {
 .modal-footer {
     border-top: 1px solid green;
 }
+
+/*--------------------404--------------------*/
+
+.error_404 {
+    border-bottom: 3px solid green;
+}

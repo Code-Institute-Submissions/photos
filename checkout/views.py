@@ -13,24 +13,21 @@ from cart.utils import get_cart_items_and_total
 from django.core.mail import send_mail
 from django.template.loader import get_template, render_to_string
 from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 
 stripe.api_key = settings.STRIPE_SECRET
-# Create your views here.
+
+@login_required()
 def checkout(request):
-    if request.user.is_authenticated == False:
-        return HttpResponseForbidden()
-        
     if request.method=="POST":
         order_form = OrderForm(request.POST)    
         payment_form = MakePaymentForm(request.POST)
         
         if order_form.is_valid() and payment_form.is_valid():
-            # Save The Order
             order = order_form.save(commit=False)
             order.date = timezone.now()
             order.save()
         
-            # Save the Order Line Items
             cart = request.session.get('cart', {})
             for id, quantity in cart.items():
                 photo = get_object_or_404(Photo, pk=id)
@@ -41,8 +38,7 @@ def checkout(request):
                     )
                 order_line_item.save()
         
-        
-            # Charge the Card
+
             items_and_total = get_cart_items_and_total(cart)
             total = items_and_total['total']
             total_in_cent = int(total*100)
@@ -60,7 +56,6 @@ def checkout(request):
             if customer.paid:
                 messages.success(request, "You have successfully paid")
                 
-                # Send Email
                 context = {
                     'site_name': "Blah Blah dot com",
                     'user': request.user,
@@ -76,7 +71,6 @@ def checkout(request):
     
                 send_mail(subject,message,from_email,to_email,fail_silently=True,html_message=html_message)
         
-                #Clear the Cart
                 del request.session['cart']
                 return redirect("photo_list")
     else:

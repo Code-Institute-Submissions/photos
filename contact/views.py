@@ -3,8 +3,10 @@ from .forms import ContactForm
 from django.core.mail import EmailMessage
 from django.template.loader import get_template
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+@login_required()
 def contact(request):
     form_class = ContactForm
 

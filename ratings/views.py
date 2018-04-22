@@ -3,12 +3,11 @@ from django.http import HttpResponseForbidden
 from .forms import ReviewForm
 from photos.models import Photo
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
+
+@login_required()
 def add_a_rating(request):
-    if not request.user.is_authenticated:
-        return HttpResponseForbidden()
-    
     photo_id = int(request.POST['photo'])
     photo = get_object_or_404(Photo, pk=photo_id)
     
