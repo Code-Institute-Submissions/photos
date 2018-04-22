@@ -2,8 +2,10 @@
 {% load staticfiles %}
 {% load bootstrap_tags %}
 {% block carousel %}
-
-<img class="error_404" src="{% static 'home/images/404.jpeg' %}" alt="Lost" style="width:100%;">
+<div class="container">
+    <img class="error_404" src="{% static 'home/images/404.jpeg' %}" alt="Lost" style="width:100%;">
+    <div class="centered">It looks like you shouldn't be here, get out of my field!</div>
+</div>
 </br>
 <div class="text-center"><p>Click <a href="{% url 'home' %}"><strong>here</strong></a> to return home</p></div>
 
