@@ -24,3 +24,10 @@ class Post(models.Model):
     def __str__(self):
         return self.title
         
+class Like(models.Model):
+    reviewer = models.ForeignKey('auth.User', blank=False)   
+    post = models.ForeignKey(Post, blank=False)
+    
+    def __str__(self):
+        return self.reviewer
+    

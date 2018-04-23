@@ -18,4 +18,4 @@ def error_404(request):
  
 def error_500(request):
         data = {}
-        return render(request,'myapp/error_500.html', data)
+        return render(request,'myapp/500.html', data)

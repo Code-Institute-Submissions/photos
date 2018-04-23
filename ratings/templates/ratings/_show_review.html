@@ -1,21 +1,23 @@
 {% load bootstrap_tags %}
-<div class="card card-outline-secondary my-4">
-    <div class="card-header">
-      <h2>Product Reviews</h2>
-    </div>
-    <div class="card-body">
 
-    {% for review in photos.reviews_received.all %}
-    <p><small >Rating 
-      {% for star in review.stars %}
-      &#9733;
-      {% endfor %}
-    </small></p>
-    <p><small class="text-muted">Posted by {{review.reviewer.username}}</small></p>
-    <hr>
-    {% endfor %}
-  
-   
+
+<div class="card card-outline-secondary my-4">
+    {% if photos.reviews_received.all|length > 0 %}
+      <div class="card-header">
+        <h2>Product Reviews</h2>
+      </div>
+    {% endif %}
+    
+    <div class="card-body">
+      {% for review in photos.reviews_received.all %}
+        <p><small >Rating 
+          {% for star in review.stars %}
+            &#9733;
+          {% endfor %}
+        </small></p>
+        <p>{{review.content}}</p>
+        <p><small class="text-muted">Posted by {{review.reviewer.username}}</small></p>
+        <hr>
+        {% endfor %}
     </div>
 </div>
-<!-- /.card -->

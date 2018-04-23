@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Post
-from .forms import PostForm, EditPostForm
+from .models import Post, Like
+from .forms import PostForm, EditPostForm, LikeForm
 from django.utils import timezone
 from django.http import HttpResponseForbidden
 from django.contrib import auth, messages
@@ -48,11 +48,28 @@ def edit_post(request, id):
 @login_required()
 def like_post(request, id):
     post = get_object_or_404(Post, pk=id)
-    if request.user == post.author:
-        messages.error(request, "You can not like your own post")
-    else:
-        post.likes += 1
-        post.save()
+    
+    print(post)
+    
+    liked = False
+    likes = Like.objects.all()
+    for like in likes:
+        if like.post == post and like.reviewer == request.user:
+            liked = True
+            
+    form = LikeForm(request.POST)  
+    if form.is_valid():
+        this_like = form.save(commit=False)
+        if request.user == post.author:
+            messages.error(request, "You can not like your own post")
+        elif liked == False:
+            this_like.reviewer = request.user
+            this_like.post = post
+            post.likes += 1
+            post.save()
+            this_like.save()
+        else:
+            messages.error(request, "You have already liked this post")
     return redirect(reverse('post_detail', args=(post.id,)))     
   
 @login_required()  

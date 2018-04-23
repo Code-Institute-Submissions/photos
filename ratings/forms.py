@@ -8,6 +8,6 @@ class ReviewForm(forms.ModelForm):
             'required': 'This field is required',
             'invalid': 'Enter a valid value between 1 and 5'
         }
-        fields=('content','rating')
+        fields=('content',)
         rating = forms.IntegerField(error_messages=my_default_errors)
         

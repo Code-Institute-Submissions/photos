@@ -9,9 +9,16 @@
         {% csrf_token %}
         
         {{ review_form | as_bootstrap }}
+        <button id="1" class="circles c1"  type="number" name="rating" value="1"><i class="fa fa-check-circle"></i></button>
+        <button id="2" class="circles c2"  type="number" name="rating" value="2"><i class="fa fa-check-circle"></i></button>
+        <button id="3" class="circles c3"  type="number" name="rating" value="3"><i class="fa fa-check-circle"></i></button>
+        <button id="4" class="circles c4"  type="number" name="rating" value="4"><i class="fa fa-check-circle"></i></button>
+        <button id="5" class="circles c5"  type="number" name="rating" value="5"><i class="fa fa-check-circle"></i></button>
+        </br>
         
+        </br>
         <input type="hidden" name="photo" value="{{photos.id}}"/>
-        <input type="submit" class="btn btn-primary btn-sm" value="Leave Review"/>
+        <!--<div><input type="submit" class="btn btn-primary btn-sm" value="Leave Review"/></div>-->
     </form>
     </div>
 </div>

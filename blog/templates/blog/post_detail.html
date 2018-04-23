@@ -8,7 +8,10 @@
         <p>{{ post.content|linebreaksbr}}</p>
         <p><strong>Views:</strong> {{ post.views }}</p>
         <p><strong>Likes:</strong> {{ post.likes }}</p>
+        <form method="post" action="{% url 'like_post' post.id %}">
+        {% csrf_token %}
         <p><a href='{% url 'like_post' post.id %}'><i class="fa fa-thumbs-up fa-2x"></i></a></p>
+        </form>
         </br>
         
         

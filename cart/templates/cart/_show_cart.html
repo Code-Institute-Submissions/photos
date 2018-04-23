@@ -2,8 +2,8 @@
     <thead>
         <tr>
             <th></th>
-            <th class="hidden-xs">Product</th>
-            <th class="hidden-xs">Quantity</th>
+            <th>Product</th>
+            <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
             <th></th>
@@ -13,9 +13,9 @@
         {% for item in cart_items %}
         <tr>
             <td><img width="150" height="75"  src="{{MEDIA_URL}}{{item.image}}"/></td>
-            <td class="hidden-xs">{{ item.name }}</td>
-            <td class="hidden-xs">{{ item.quantity }}</td>
-            <td class="hidden-xs">€{{ item.price }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>€{{ item.price }}</td>
             <td>€{{ item.total }}</td>
             <td><form method="post" action="{% url 'remove_from_cart' item.product_id %}">
                 {% csrf_token %}
@@ -30,16 +30,16 @@
             <td class="hidden-xs"></td>
             <td><strong>Total:</strong></td>
             <td>€{{ total }}</td>
-            <td></td>
+            <td class="hidden-xs"></td>
         </tr>
         
         <tr>
             <td><a href="{% url 'checkout' %}" class="btn btn-success btn-sm" role="button">Checkout</a></td>
-            <td></td>
             <td class="hidden-xs"></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td class="hidden-xs"></td>
+            <td class="hidden-xs"></td>
+            <td class="hidden-xs"></td>
+            <td class="hidden-xs"></td>
         </tr>
     </tbody>
     
