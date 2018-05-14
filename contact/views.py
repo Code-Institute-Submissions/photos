@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
 from .forms import ContactForm
-from django.core.mail import EmailMessage
+from django.core.mail import EmailMessage, send_mail
 from django.template.loader import get_template
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 @login_required()
@@ -25,6 +26,13 @@ def contact(request):
                 'form_content': form_content,
             }
             content = template.render(context)
+            
+            subject = 'Thanks for getting in touch!'
+            message = 'Thank you for contacting Photos of Ireland. We will get back to you as soon as we can'
+            from_email = settings.EMAIL_HOST_USER
+            to_email = [contact_email]
+
+            send_mail(subject,message,from_email,to_email,fail_silently=True)
     
             email = EmailMessage(
                 "New contact form submission",

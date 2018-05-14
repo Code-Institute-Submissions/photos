@@ -29,6 +29,14 @@ ALLOWED_HOSTS = ['irish-photos-django-colmhughes.c9users.io', 'photos-project3.h
 
 # Application definition
 
+
+
+EMAIL_USE_TLS = True       
+EMAIL_HOST = 'smtp-mail.outlook.com'      
+EMAIL_PORT = 587     
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')     
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
