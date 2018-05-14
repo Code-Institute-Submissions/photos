@@ -61,8 +61,7 @@ The Contact App allows the user to get in contact and ask any questions he/she f
 
 ## Wireframes
 The wireframes for this project can be viewed on github in the 'Wireframes' folder. The project is
-fully mobile-responsive with the only major difference being the home page and navbar which have separate sketches
-for mobile and desktop. All sketches were made on 'wireframepro'.
+fully mobile-responsive. All sketches were made on 'wireframepro'.
 
 ## Testing
 This application was tested across a range of browsers and devices, it is fully mobile responsive. Manual tests were carried out on all 
@@ -72,7 +71,7 @@ functionality including:
 * Only registered users can leave a rating or like a blog post.
 * Registered users may only leave one review per photo and one like per blog post.
 * Only the admin or author of a blog post may delete or edit the post.
-* Highest rated and most like blog post show up on home page.
+* Highest rated photograph and most liked blog post show up on home page.
 * Incorrect URL's will direct to custom 404 page.
 
 Automated testing is also available in the tests.py located within each app.
